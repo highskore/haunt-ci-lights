@@ -1,6 +1,17 @@
+<div align="center">
+
+<img src="docs/icon.png" width="96" alt="">
+
 # CI lights
 
-Track a pushed PR's checks on the agent's Haunt row and get pinged when they settle.
+**Track a pushed PR's checks on the agent's Haunt row and get pinged when they settle.**
+
+[![Haunt plugin](https://img.shields.io/badge/Haunt-plugin-D97757)](https://github.com/highskore/haunt-hackathon)
+![Plugin API 0.5](https://img.shields.io/badge/plugin%20API-0.5-111)
+![WASM component](https://img.shields.io/badge/WASM-component-654ff0?logo=webassembly&logoColor=white)
+![MIT licence](https://img.shields.io/badge/licence-MIT-6b7280)
+
+</div>
 
 When an agent runs `git push`, CI lights asks `gh` for the branch's PR and then watches its checks. The row shows `CI 7/9` in the label slot (orange once a check fails) and `#142 · checks running` after the meta line. When a check fails, or once every check has passed, you get one notification: `api · #142 checks failed` with `lint (clippy) failed after 3m12s`, or `api · #142 checks passed` with `all 9 passed in 4m7s`. **Open PR** opens the PR on github.com in your browser and **Open agent** brings the tab up. Haunt runs `gh` itself, in the folder the tab was opened in and only inside your home folder; when `gh` can't answer (no login, no PR), the plugin's log says why once.
 
