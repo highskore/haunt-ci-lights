@@ -1,0 +1,26 @@
+[plugin]
+id = "dev.haunt.ci-lights"
+name = "CI lights"
+description = "Track a pushed PR's checks on the agent's Haunt row and get pinged when they settle"
+version = "0.1.0"
+api = "0.5"
+entry = "target/wasm32-wasip2/release/haunt_plugin.wasm"
+license = "MIT"
+
+[capabilities]
+decorate = true
+# Bash commands, to spot `git push`.
+event_details = true
+events = ["agent.tool"]
+exec = ["gh-pr-view", "gh-pr-checks"]
+notifications = true
+# Open PR on the notification; only after you click it, only github.com.
+open_url = ["github.com"]
+# Looks at the checks while any are running; stops when they settle.
+timer = true
+
+[settings]
+poll_secs = { type = "integer", default = 30, description = "Seconds between looks at the checks, 15 to 600" }
+notify_failed = { type = "bool", default = true, description = "Notify when a check fails" }
+notify_passed = { type = "bool", default = true, description = "Notify when every check has passed" }
+unverified = { type = "bool", default = false, description = "Also follow pushes from events without the tab's nonce, which anything in the terminal can forge" }
